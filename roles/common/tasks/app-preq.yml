@@ -3,9 +3,6 @@
   ansible.builtin.user:
       name: roboshop
 
-
-
-    
 - name: Remove old content
   ansible.builtin.file:
     path: "{ { app_path  } }"
@@ -17,7 +14,7 @@
     state: directory
 
 
-- name: Download file
+- name: Download file and unzip it
   ansible.builtin.unarchive:
     src: https://roboshop-artifacts.s3.amazonaws.com/${component}-v3.zip
     dest: "{ { app_path  } }"
