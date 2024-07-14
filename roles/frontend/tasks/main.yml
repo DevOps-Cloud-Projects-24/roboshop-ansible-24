@@ -19,6 +19,11 @@
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
 
+- name: Setup app pre-req
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: app-preq
+
 
 
 
