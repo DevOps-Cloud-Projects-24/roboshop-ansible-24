@@ -23,10 +23,11 @@
   args:
     chdir: "{{ app_path }}"
 
-- name: Setup schema
+- name: load schema
   ansible.builtin.include_role:
     name: common
     tasks_from: schema
+  when: schema_setup is defined
 
 - name: Setup systemd
   ansible.builtin.include_role:
