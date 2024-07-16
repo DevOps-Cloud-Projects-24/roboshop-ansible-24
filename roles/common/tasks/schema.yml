@@ -1,13 +1,16 @@
-- name: Copy MongoDB repo file
-  ansible.builtin.copy:
-    src: mongo.repo
-    dest: /etc/yum.repos.d/mongo.repo
+- name: Load MongoDB schema
+  when: schema_setup == "mongo"
+  block:
+    - name: Copy MongoDB repo file
+      ansible.builtin.copy:
+        src: mongo.repo
+        dest: /etc/yum.repos.d/mongo.repo
 
 
-- name: Install MongoDB Client
-  ansible.builtin.dnf:
-    name: mongodb-mongosh
-    state: latest
+    - name: Install MongoDB Client
+      ansible.builtin.dnf:
+        name: mongodb-mongosh
+        state: latest
 
-- name:  Load Master Data
-  ansible.builtin.shell: mongosh --host mongo.{{ env }}.idevops24.online </app/db/master-data.js
+    - name:  Load Master Data
+      ansible.builtin.shell: mongosh --host mongo.{{ env }}.idevops24.online </app/db/master-data.js
