@@ -10,4 +10,4 @@
     state: latest
 
 - name:  Load Master Data
-  ansible.builtin.shell: mongosh --host mongo.{{ env }}.idevops24.online </app/db/master-data.js
+  ansible.builtin.shell: mongosh --host mongo.dev.idevops24.online </app/db/master-data.js
