@@ -26,7 +26,7 @@
     regexp: 'protected-mode'
     line: protected-mode on
 
-- name: start service
+- name: start redis service
   ansible.builtin.systemd_service:
     name: redis
     state: restarted
