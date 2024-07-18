@@ -1,0 +1,27 @@
+- name: Install golang
+  ansible.builtin.dnf:
+    name: golang
+    state: latest
+
+
+- name: Setup app pre-req
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: app-preq
+
+- name: Download Dependencies
+  ansible.builtin.shell: go mod init dispatch ; go get ; go build
+  args:
+    chdir: "{{ app_path }}"
+
+
+- name: load schema
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: schema
+  when: schema_setup is defined
+
+- name: Setup systemd
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd
