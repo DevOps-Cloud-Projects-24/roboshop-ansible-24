@@ -1,6 +1,6 @@
 
 - name: Copy rabbitmq repo file
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: rabbitmq.repo
     dest: /etc/yum.repos.d/rabbitmq.repo
 
