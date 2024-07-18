@@ -1,19 +1,12 @@
-
 - name: Copy rabbitmq repo file
   ansible.builtin.copy:
     src: rabbitmq.repo
     dest: /etc/yum.repos.d/rabbitmq.repo
 
-
 - name: Install rabbitmq
   ansible.builtin.dnf:
     name: rabbitmq-server
     state: latest
-
-
-
-
-
 
 - name: Start rabbitmq Service
   ansible.builtin.systemd_service:
