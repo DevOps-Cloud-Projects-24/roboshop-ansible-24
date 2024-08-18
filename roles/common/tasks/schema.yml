@@ -25,5 +25,5 @@
         state: latest
 
     - name:  Load Master Data
-      ansible.builtin.shell: mysql -h mysql.{{ env }}.idevops24.online -uroot -pRoboShop@1 < /app/db/{{ item }}.sql
+      ansible.builtin.shell: mysql -h mysql.{{ env }}.idevops24.online -uroot -p{{ secrets.MYSQL_ROOT_PASS }} < /app/db/{{ item }}.sql
       loop: "{{schema_files}}"
